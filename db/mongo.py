@@ -23,13 +23,11 @@ def CheckAlarm():
         if datetime.now().strftime('%S') == '30':
             data = db.coll.find_one({"date_alarm": datetime.now().strftime('%Y-%m-%d'), "time_alarm": datetime.now().strftime('%H:%M'), "status": "on"})
             if data:
-                print(data)
                 logger.info('Check alarm')
                 db.coll.update_one({'_id': data['_id']}, {'$set': {"status": "off"}})
                 del data['_id']
                 del data['status']
                 play_sound(data['song_path'])
-                print('22222222')
 
 
 
@@ -55,6 +53,7 @@ async def SearchAll():
     out = []
     for i in mas:
         id = i['_id']
+        i['id'] = str(id)
         del i['_id']
         out.append(i)
     return out

@@ -7,11 +7,9 @@ from os import path
 import logging
 import multiprocessing
 
-import bluetooth
+
 from playsound import playsound
-
-
-
+import bluetooth
 
 
 if __name__ == '__main__':

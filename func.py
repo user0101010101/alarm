@@ -24,7 +24,7 @@ def play_sound(name_sound):
             p.terminate()
     parent_dir = path.dirname(path.abspath(__file__))
     full_path = parent_dir + '/res/' + name_sound + '.mp3'
-    p = multiprocessing.Process(target=playsound, args=(full_path,), name='playing')
+    p = multiprocessing.Process(target=playsound, args=(full_path,), name='play')
     p.start()
     return p
 
@@ -32,7 +32,7 @@ def stop_sound():
     logger.info('Stop sound')
     for p in multiprocessing.active_children():
         print(p.name)
-        if p.name == 'playing':
+        if p.name == 'play':
             p.terminate()
 
 async def show_all_sounds():
